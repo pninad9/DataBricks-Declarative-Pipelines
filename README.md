@@ -7,8 +7,7 @@
 This repository delivers an end-to-end Databricks Lakehouse built entirely with Lakeflow Declarative Pipelines (DLT). It implements the Medallion pattern—Bronze landing with Expectations, Silver enrichment via Auto-CDC (Type-1 upserts) exposed through stable views, and Gold with SCD2 dimensions, a Type-1 fact table, and a full-history materialized business view. The project supports streaming and batch in one pipeline, comes with reusable utilities, and provides SQL scripts to seed/increment data plus screenshots of each stage.
 
 
-
-## Bronze — Ingestion & Quality Gate (DLT Streaming)
+## Bronze :— Ingestion & Quality Gate (DLT Streaming)
 
 **Purpose.** Land raw operational data (Sales East/West, Products, Customers) as append-only Delta tables, preserving fidelity while unifying batch + streaming into a single, incremental pipeline.
 
@@ -33,7 +32,7 @@ This repository delivers an end-to-end Databricks Lakehouse built entirely with 
 
  <img src="https://github.com/pninad9/DataBricks-Declarative-Pipelines/blob/a86f076ad67bc10ebaf76697201f3aa6272bf664/ScreenShot/Bronze.png" />
 
-### Silver — Cleaned, Upserted & Modeled (DLT with Auto-CDC)
+### Silver :— Cleaned, Upserted & Modeled (DLT with Auto-CDC)
 
 **Purpose.** Convert raw Bronze streams into clean, deduplicated, **upserted** Delta tables (Type-1 behavior) with consistent types and business-ready columns that downstream layers can trust.
 
@@ -63,7 +62,7 @@ This repository delivers an end-to-end Databricks Lakehouse built entirely with 
 <img src="https://github.com/pninad9/DataBricks-Declarative-Pipelines/blob/a86f076ad67bc10ebaf76697201f3aa6272bf664/ScreenShot/silver.png" />
 
 
-###  Gold — Curated Dimensional Model & Business Views (DLT + SCD Type-2)
+###  Gold :— Curated Dimensional Model & Business Views (DLT + SCD Type-2)
 
 **Purpose.** Publish analytics-ready data: **Type-2 dimensions** (history preserved), an **upserted fact**, and **business views** that BI tools can query with zero prep.
 
@@ -101,7 +100,7 @@ This repository delivers an end-to-end Databricks Lakehouse built entirely with 
 
 ###  Final Run
 The pipeline runs incrementally, not as a full refresh. Bronze append flows ingest only new events; Silver uses auto-CDC upserts (keys, sequence_by) so unchanged rows are skipped; Gold applies SCD Type-2 so only natural-key rows with actual changes produce new versions (old versions are closed, new ones opened). Metrics like “written”/“upserted” therefore reflect just the delta of this run (e.g., 4 new sales + 2 customer updates), not the full table size. Additionally, any records failing DLT expectations (data-quality rules) are dropped or warned, further reducing the count for that run.
-- ![After final run]
+
 <img src="https://github.com/pninad9/DataBricks-Declarative-Pipelines/blob/a86f076ad67bc10ebaf76697201f3aa6272bf664/ScreenShot/after%20final%20run.png" />
 
 ### Final Words
