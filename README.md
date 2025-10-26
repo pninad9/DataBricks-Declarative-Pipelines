@@ -71,8 +71,10 @@ This repository delivers an end-to-end Databricks Lakehouse built entirely with 
 - Sources are the **Silver streaming views** (not the mutating tables) to keep the last hop purely incremental and schema-stable.
 - Dimensions (e.g., `dim_products`, `dim_customers`) use **DLT SCD-Type-2** semantics with:
   - natural `keys=[...]` (e.g., `product_id`, `customer_id`) and `sequence_by=<last_updated_ts>` for version ordering,
-  - surrogate keys, `effective_start`, `effective_end`, and `is_current` columns maintained by the pipeline.
+  - surrogate keys, `__START_AT`, `__END_AT` columns maintained by the pipeline.
 - Fact table (e.g., `fact_sales`) is an **upserted** Delta table (Type-1 behavior) keyed by the business transaction id; late/changed events are merged in place.
+
+<img src="https://github.com/pninad9/DataBricks-Declarative-Pipelines/blob/3545b20eeeac60606c2f391d83d62e18f7644cd7/ScreenShot/scd%20after%20run.png" />
 
 **Transformations.**
 - Conformed columns and types from Silver (e.g., computed `total_amount`) are retained.
@@ -91,9 +93,11 @@ This repository delivers an end-to-end Databricks Lakehouse built entirely with 
 - The DLT graph shows Bronze → Silver (views) → Gold (dims/facts) → Business MV lineage for easy audits.
 
 **Gold Layer**
+
 <img src="https://github.com/pninad9/DataBricks-Declarative-Pipelines/blob/a86f076ad67bc10ebaf76697201f3aa6272bf664/ScreenShot/gold.png" />
 
 **Business view**
+
 <img src= "https://github.com/pninad9/DataBricks-Declarative-Pipelines/blob/a86f076ad67bc10ebaf76697201f3aa6272bf664/ScreenShot/business%20view.png" />
 
 ###  Final Run
