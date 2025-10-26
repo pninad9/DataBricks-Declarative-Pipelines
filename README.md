@@ -90,9 +90,10 @@ This repository delivers an end-to-end Databricks Lakehouse built entirely with 
 - Re-runs converge: SCD-2 manages version history; fact upserts reconcile late events; materialized views rebuild deterministically.
 - The DLT graph shows Bronze → Silver (views) → Gold (dims/facts) → Business MV lineage for easy audits.
 
-- ![Gold layer]
+**Gold Layer**
 <img src="https://github.com/pninad9/DataBricks-Declarative-Pipelines/blob/a86f076ad67bc10ebaf76697201f3aa6272bf664/ScreenShot/gold.png" />
-- ![Business view]
+
+**Business view**
 <img src= "https://github.com/pninad9/DataBricks-Declarative-Pipelines/blob/a86f076ad67bc10ebaf76697201f3aa6272bf664/ScreenShot/business%20view.png" />
 
 ###  Final Run
