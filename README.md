@@ -72,9 +72,8 @@ This repository delivers an end-to-end Databricks Lakehouse built entirely with 
 - Dimensions (e.g., `dim_products`, `dim_customers`) use **DLT SCD-Type-2** semantics with:
   - natural `keys=[...]` (e.g., `product_id`, `customer_id`) and `sequence_by=<last_updated_ts>` for version ordering,
   - surrogate keys, `__START_AT`, `__END_AT` columns maintained by the pipeline.
+ <img src="https://github.com/pninad9/DataBricks-Declarative-Pipelines/blob/3545b20eeeac60606c2f391d83d62e18f7644cd7/ScreenShot/scd%20after%20run.png" />
 - Fact table (e.g., `fact_sales`) is an **upserted** Delta table (Type-1 behavior) keyed by the business transaction id; late/changed events are merged in place.
-
-<img src="https://github.com/pninad9/DataBricks-Declarative-Pipelines/blob/3545b20eeeac60606c2f391d83d62e18f7644cd7/ScreenShot/scd%20after%20run.png" />
 
 **Transformations.**
 - Conformed columns and types from Silver (e.g., computed `total_amount`) are retained.
