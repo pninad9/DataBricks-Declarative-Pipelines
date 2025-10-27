@@ -1,4 +1,4 @@
-# End-to-End Azure Data Engineering Project
+# Databricks Medallion Lakehouse — Declarative Pipelines (DLT)
 ## End-to-end Databricks Lakehouse (DLT): Medallion, streaming+batch, Expectations, Auto-CDC, SCD2, business MV.
 
 
